@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #B0E0E6;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.SignUpController">
+    <children>
+        <AnchorPane fx:id="loginSingButton" layoutY="67.0" prefHeight="329.0" prefWidth="700.0" style="-fx-background-color: #fafafa;">
+            <children>
+                <PasswordField fx:id="signUpPasswordField1" layoutX="269.0" layoutY="184.0" prefHeight="25.0" prefWidth="183.0" promptText="Повтор пароля" style="-fx-border-radius: 5px; -fx-border-color: grey;">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </PasswordField>
+                <Label layoutX="259.0" layoutY="14.0" text="Регистрация" textAlignment="CENTER" textFill="#7d7a7a">
+                    <font>
+                        <Font name="Times New Roman Bold Italic" size="36.0" />
+                    </font>
+                </Label>
+                <Button fx:id="signUpButton" layoutX="269.0" layoutY="262.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="189.0" style="-fx-background-color: #1E90FF; -fx-border-radius: 9px;" text="Зарегистрироваться" textFill="#fff9f9">
+                    <font>
+                        <Font name="Times New Roman" size="14.0" />
+                    </font>
+                </Button>
+            <TextField fx:id="signUpEmail" layoutX="269.0" layoutY="65.0" prefHeight="25.0" prefWidth="183.0" promptText="Email" style="-fx-border-color: grey; -fx-border-radius: 5px;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="signUpPasswordField0" layoutX="269.0" layoutY="133.0" prefHeight="25.0" prefWidth="183.0" promptText="Пароль" style="-fx-border-radius: 5px; -fx-border-color: grey;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </PasswordField>
+            </children>
+        </AnchorPane>
+        <Label layoutX="280.0" layoutY="14.0" text="SimbirSoft" textAlignment="CENTER">
+            <font>
+                <Font name="Times New Roman Bold Italic" size="47.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
