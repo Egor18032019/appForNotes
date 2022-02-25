@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -9,12 +10,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #B0E0E6;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.NotesController">
     <children>
-        <AnchorPane fx:id="loginSingButton" layoutY="67.0" prefHeight="329.0" prefWidth="700.0" style="-fx-background-color: #fafafa;">
+        <AnchorPane fx:id="sceneLogin" layoutY="67.0" prefHeight="329.0" prefWidth="700.0" style="-fx-background-color: #fafafa;">
             <children>
-                <Button fx:id="addNotes" layoutX="281.0" layoutY="24.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="189.0" style="-fx-background-color: #1E90FF; -fx-border-radius: 9px;" text="Добавить заметку" textFill="#fff9f9">
+                <Button fx:id="addNotes" defaultButton="true" layoutX="281.0" layoutY="24.0" mnemonicParsing="false" onAction="#red" onDragDetected="#black" onDragDone="#black" onDragDropped="#black" onDragEntered="#black" onDragExited="#black" onDragOver="#black" onInputMethodTextChanged="#orange" onKeyPressed="#orange" onKeyReleased="#orange" onKeyTyped="#orange" onMouseClicked="#black" onMouseDragEntered="#black" onMouseDragExited="#black" onMouseDragOver="#black" onMouseDragReleased="#black" onMouseDragged="#black" onMouseEntered="#black" onMouseExited="#black" onMouseMoved="#black" onMousePressed="#black" onMouseReleased="#black" onScroll="#black" onScrollFinished="#black" onScrollStarted="#black" onTouchMoved="#black" onTouchPressed="#black" onTouchReleased="#black" onTouchStationary="#black" prefHeight="32.0" prefWidth="189.0" style="-fx-background-color: #1E90FF; -fx-border-radius: 9px;" text="Добавить заметку" textFill="#fff9f9">
                     <font>
                         <Font name="Times New Roman" size="14.0" />
                     </font>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
                 </Button>
             <ImageView fitHeight="53.0" fitWidth="63.0" layoutX="209.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -28,6 +32,9 @@
                 <Font name="Times New Roman Bold Italic" size="47.0" />
             </font>
         </Label>
-      <Button fx:id="exit" defaultButton="true" layoutX="589.0" layoutY="28.0" mnemonicParsing="false" onAction="#orange" onDragDetected="#red" onMouseClicked="#black" text="Выйти" />
+      <Button fx:id="exitButton" defaultButton="true" layoutX="589.0" layoutY="28.0" mnemonicParsing="false" onAction="#logout" onDragDetected="#red" onMouseClicked="#black" text="Выйти">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
     </children>
 </AnchorPane>

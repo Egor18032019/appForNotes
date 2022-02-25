@@ -17,12 +17,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sample.animations.Shake;
-import sample.entity.Const;
+import sample.utils.Pages;
 import sample.entity.DatabaseHandler;
+import sample.service.NewScene;
 import sample.service.User;
 
 public class Controller {
-
+    NewScene scene = new NewScene();
     @FXML
     private TextField loginField;
 
@@ -45,7 +46,7 @@ public class Controller {
             String loginText = loginField.getText().trim();
             String loginPassword = passwordField.getText().trim();
             if (!loginText.equals("") && !loginPassword.equals("")) {
-                loginUser(loginText, loginPassword);
+                loginUser(loginText, loginPassword, loginEnterButton);
             } else {
                 //TODO сделать обработку если незаполнил
                 System.out.println("Login or Password is empty !");
@@ -53,10 +54,11 @@ public class Controller {
         });
 
         loginSignUp.setOnAction(event -> {
-            openNewScene("/sample/view/signUp.fxml");
-        }); }
+            scene.open(Pages.SIGN_SCENE, loginSignUp, "Неизвестный пользователь");
+        });
+    }
 
-    private void loginUser(String loginText, String loginPassword) {
+    private void loginUser(String loginText, String loginPassword, Button action) {
         System.out.println("loginText: " + loginText + ", loginPassword : " + loginPassword);
         DatabaseHandler dbHandler = new DatabaseHandler();
         User user = new User(loginText, loginPassword);
@@ -65,6 +67,7 @@ public class Controller {
         int counter = 0;
         try {
             if (resul.next()) {
+                System.out.println("login " + resul.getString("login")  );
                 counter++;
                 System.out.println("resul " + resul.toString());
             } else {
@@ -76,10 +79,8 @@ public class Controller {
 
         if (counter >= 1) {
             System.out.println("нашли Success");
-            openNewScene("/sample/view/app.fxml");
-
-        }
-        else {
+            scene.open(Pages.NOTES_SCENE, action, loginText);
+        } else {
             Shake userLoginAnim = new Shake(loginField);
             Shake userPasswordAnim = new Shake(passwordField);
             userLoginAnim.playAnim();
@@ -88,21 +89,5 @@ public class Controller {
 
     }
 
-    public void openNewScene(String window) {
-        // получаем сцену на которой было нажата кнопка и прячем её
-        loginSignUp.getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader();
-         loader.setLocation(getClass().getResource(window));
-        try {
-            loader.load();
-        } catch (IOException e) {
-            System.out.println("Ошибка в FXMLLoader");
-//            e.printStackTrace();
-        }
 
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
-    }
 }

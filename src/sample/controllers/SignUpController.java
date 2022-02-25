@@ -29,8 +29,7 @@ public class SignUpController {
 
     @FXML
     void initialize() {
-        DatabaseHandler dbHandler = new DatabaseHandler();
-        signUpButton.setOnAction(event -> {
+         signUpButton.setOnAction(event -> {
             System.out.println("Зарегистрироваться ");
 
             signUpNewUser();
