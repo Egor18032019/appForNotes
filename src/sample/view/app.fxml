@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +13,8 @@
     <children>
         <AnchorPane fx:id="sceneLogin" layoutY="67.0" prefHeight="329.0" prefWidth="700.0" style="-fx-background-color: #fafafa;">
             <children>
-                <Button fx:id="addNotes" defaultButton="true" layoutX="281.0" layoutY="24.0" mnemonicParsing="false" onAction="#red" onDragDetected="#black" onDragDone="#black" onDragDropped="#black" onDragEntered="#black" onDragExited="#black" onDragOver="#black" onInputMethodTextChanged="#orange" onKeyPressed="#orange" onKeyReleased="#orange" onKeyTyped="#orange" onMouseClicked="#black" onMouseDragEntered="#black" onMouseDragExited="#black" onMouseDragOver="#black" onMouseDragReleased="#black" onMouseDragged="#black" onMouseEntered="#black" onMouseExited="#black" onMouseMoved="#black" onMousePressed="#black" onMouseReleased="#black" onScroll="#black" onScrollFinished="#black" onScrollStarted="#black" onTouchMoved="#black" onTouchPressed="#black" onTouchReleased="#black" onTouchStationary="#black" prefHeight="32.0" prefWidth="189.0" style="-fx-background-color: #1E90FF; -fx-border-radius: 9px;" text="Добавить заметку" textFill="#fff9f9">
+                <ListView id="listView" fx:id="listView" layoutX="25.0" layoutY="66.0" prefHeight="44.0" prefWidth="657.0" />
+                <Button fx:id="addNotes" defaultButton="true" layoutX="281.0" layoutY="24.0" mnemonicParsing="false" onAction="#addNewNotes" prefHeight="32.0" prefWidth="189.0" style="-fx-background-color: #1E90FF; -fx-border-radius: 9px;" text="Добавить заметку" textFill="#fff9f9">
                     <font>
                         <Font name="Times New Roman" size="14.0" />
                     </font>

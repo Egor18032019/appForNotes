@@ -1,26 +1,15 @@
 package sample.controllers;
 
-import java.io.IOException;
-import java.net.URL;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import sample.animations.Shake;
-import sample.utils.Pages;
 import sample.entity.DatabaseHandler;
 import sample.service.NewScene;
 import sample.service.User;
+import sample.utils.Pages;
 
 public class Controller {
     NewScene scene = new NewScene();
@@ -54,7 +43,7 @@ public class Controller {
         });
 
         loginSignUp.setOnAction(event -> {
-            scene.open(Pages.SIGN_SCENE, loginSignUp, "Неизвестный пользователь");
+            scene.open(Pages.SIGN_SCENE, loginSignUp, "Неизвестный пользователь",0);
         });
     }
 
@@ -62,24 +51,10 @@ public class Controller {
         System.out.println("loginText: " + loginText + ", loginPassword : " + loginPassword);
         DatabaseHandler dbHandler = new DatabaseHandler();
         User user = new User(loginText, loginPassword);
-        ResultSet resul = dbHandler.getUser(user);
-        //TODO херня какаято . переделать
-        int counter = 0;
-        try {
-            if (resul.next()) {
-                System.out.println("login " + resul.getString("login")  );
-                counter++;
-                System.out.println("resul " + resul.toString());
-            } else {
-                System.out.println("ненашли");
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        if (counter >= 1) {
+        int userId = dbHandler.getUserId(user);
+        if (userId>0) {
             System.out.println("нашли Success");
-            scene.open(Pages.NOTES_SCENE, action, loginText);
+            scene.open(Pages.NOTES_SCENE, action, loginText,userId);
         } else {
             Shake userLoginAnim = new Shake(loginField);
             Shake userPasswordAnim = new Shake(passwordField);
