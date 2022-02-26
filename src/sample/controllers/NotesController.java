@@ -1,10 +1,8 @@
 package sample.controllers;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -12,18 +10,20 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.entity.DatabaseHandler;
 import sample.model.PersonNotes;
 import sample.service.NewScene;
 import sample.utils.Pages;
-import sample.entity.DatabaseHandler;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class NotesController {
     private NewScene scene = new NewScene();
     private Stage stage;
     private ObservableList<PersonNotes> wordsList;
+
+    public int getUserId() {
+        return userId;
+    }
+
     private int userId;
 
 
@@ -70,15 +70,21 @@ public class NotesController {
             System.out.println("Вы  нажали на кнопку logout");
             stage = (Stage) sceneLogin.getScene().getWindow();
             stage.close();
+            scene.show(Pages.MAIN_SCENE,"Неизвестный пользователь");
         }
 
     }
 
     @FXML
     void addNewNotes(ActionEvent event) {
-        System.out.println("Создать новую заметку");
+
         stage = (Stage) sceneLogin.getScene().getWindow();
         scene.show(Pages.NEW_NOTES_SCENE, stage.getTitle());
+        System.out.println("Делаем запрос к бд и обновляем даныне");
+        //Todo или не делать запрос к бд а напрямую получить данные ?? в тз нет ничего про это
+        DatabaseHandler dbHandler = new DatabaseHandler();
+        wordsList = dbHandler.getNotes(userId);
+        setWordsList(wordsList);
     }
 
 //    @Override

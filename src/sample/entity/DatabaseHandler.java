@@ -13,55 +13,76 @@ public class DatabaseHandler extends Configs {
     Connection dbConnection;
 
     public Connection getDbConnection() throws ClassNotFoundException, SQLException {
+
         String connectionString = "jdbc:postgresql://" + dbHost + ":" + dbPort + "/" + dbName;
         Properties props = new Properties();
-        props.setProperty("user", "postgres");
-        props.setProperty("password", "222324");
+        props.setProperty("user", dbUser);
+        props.setProperty("password", dbPass);
         props.setProperty("ssl", "false");
         dbConnection = DriverManager.getConnection(connectionString, props);
 
         return dbConnection;
     }
 
-    public void signUpUser(User user) {
+    public User signUpUser(String login, String password) {
         String insert = "INSERT INTO users(login,password)VALUES(?,?)";
 
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(insert);
-            prSt.setString(1, user.getLogin());
-            prSt.setString(2, user.getPassword());
+            prSt.setString(1, login);
+            prSt.setString(2, password);
             prSt.executeUpdate();
+            int id = getUserId(login);
+            User user = new User(id, login, password);
+            return user;
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
+        return null;
     }
 
-    public int getUserId(User user) {
+    public User getUser(String login, String password) {
         ResultSet resSet = null;
         PreparedStatement prSt = null;
-        int counter = 0;
-        int userId = 0;
 
-        String select = "SELECT * FROM users WHERE login=(?) AND password=(?)";
+        String select = "SELECT * FROM users WHERE login=(?) AND password =(?)";
 
         try {
             prSt = getDbConnection().prepareStatement(select);
-            prSt.setString(1, user.getLogin());
-            prSt.setString(2, user.getPassword());
+            prSt.setString(1, login);
+            prSt.setString(2, password);
             resSet = prSt.executeQuery();
             if (resSet.next()) {
-                System.out.println("idusers " + resSet.getString("idusers"));
-                userId = Integer.parseInt(resSet.getString("idusers"));
-                counter++;
-            } else {
-                System.out.println("ненашли");
+                int id = resSet.getInt("idusers");
+                User user = new User(id, login, password);
+                return user;
             }
         } catch (SQLException | ClassNotFoundException throwables) {
             System.out.println("Ошибка в процессе выполнения SQL запроса");
             throwables.printStackTrace();
         }
-        System.out.println(resSet != null ? resSet.toString() : "ненашли");
-        return userId;
+        return null;
+    }
+
+    public boolean haveUser(String login, String password) {
+        ResultSet resSet = null;
+        PreparedStatement prSt = null;
+        boolean haveThisUserInBD = false;
+        String select = "SELECT * FROM users WHERE login=(?) password =(?)";
+
+        try {
+            prSt = getDbConnection().prepareStatement(select);
+            prSt.setString(1, login);
+            prSt.setString(2, password);
+            resSet = prSt.executeQuery();
+            if (resSet.next()) {
+                haveThisUserInBD=true;
+            }
+        } catch (SQLException | ClassNotFoundException throwables) {
+            System.out.println("Ошибка в процессе выполнения SQL запроса");
+            throwables.printStackTrace();
+        }
+        return haveThisUserInBD;
     }
 
     public void saveNotes(String notes, String user) {
@@ -125,8 +146,9 @@ public class DatabaseHandler extends Configs {
                 String note = resSet.getString("user_notes");
                 System.out.println("note " + note);
                 String date = resSet.getString("timestamptz");
-                System.out.println("date " + date);
-                wordsList.add(new PersonNotes(note, date));
+                String dateForView = date.substring(0, date.length() - 4);
+                System.out.println("dateForView " + dateForView);
+                wordsList.add(new PersonNotes(note, dateForView));
             }
 
         } catch (SQLException | ClassNotFoundException throwables) {

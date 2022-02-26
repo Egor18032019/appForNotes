@@ -1,0 +1,16 @@
+docker run
+ --name int-postgres -имя контейнера
+--volume db-data:/var/lib/postgresql/data
+название volume, то есть того места на нашем диске,
+ где реально будет храниться база из контейнера.
+  Если не задавать volume,
+   то при каждом новом запуске контейнера будет создаваться новый volume,
+   и данные в базе для нас окажутся как бы не сохраненные.
+ А с volume они будут сохраняться. Через двоеточие указан путь внутри контейнера, которому соответствует volume.
+-e POSTGRES_PASSWORD=123  -и пароль доступа для пользователя postgres
+
+-e POSTGRES_DB=intpostgres  - название базы
+-p 5432:5432 -указан порт на локальной машине 5555, которому соответствует порт внутри контейнера 5555.
+postgres:12-alpine -это имя образа.
+
+docker run --name int-postgres --volume db-data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=123 -e POSTGRES_DB=intpostgres -p 5432:5432 postgres:12-alpine

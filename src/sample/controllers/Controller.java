@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import sample.animations.Shake;
 import sample.entity.DatabaseHandler;
 import sample.service.NewScene;
@@ -15,6 +16,8 @@ public class Controller {
     NewScene scene = new NewScene();
     @FXML
     private TextField loginField;
+    @FXML
+    private Text erorText;
 
     @FXML
     private Button loginSignUp;
@@ -37,25 +40,26 @@ public class Controller {
             if (!loginText.equals("") && !loginPassword.equals("")) {
                 loginUser(loginText, loginPassword, loginEnterButton);
             } else {
-                //TODO сделать обработку если незаполнил
-                System.out.println("Login or Password is empty !");
+                String info = "Login or Password is empty !";
+                erorText.setText(info);
             }
         });
 
         loginSignUp.setOnAction(event -> {
-            scene.open(Pages.SIGN_SCENE, loginSignUp, "Неизвестный пользователь",0);
+            scene.open(Pages.SIGN_SCENE, loginSignUp, "Неизвестный пользователь");
         });
     }
 
     private void loginUser(String loginText, String loginPassword, Button action) {
         System.out.println("loginText: " + loginText + ", loginPassword : " + loginPassword);
         DatabaseHandler dbHandler = new DatabaseHandler();
-        User user = new User(loginText, loginPassword);
-        int userId = dbHandler.getUserId(user);
-        if (userId>0) {
+        User user = dbHandler.getUser(loginText, loginPassword);
+        if (user != null) {
             System.out.println("нашли Success");
-            scene.open(Pages.NOTES_SCENE, action, loginText,userId);
+            scene.open(Pages.NOTES_SCENE, action, user);
         } else {
+            String info = "Login or Password is wrong !";
+            erorText.setText(info);
             Shake userLoginAnim = new Shake(loginField);
             Shake userPasswordAnim = new Shake(passwordField);
             userLoginAnim.playAnim();

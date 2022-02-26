@@ -13,7 +13,7 @@
     <children>
         <AnchorPane fx:id="sceneLogin" layoutY="67.0" prefHeight="329.0" prefWidth="700.0" style="-fx-background-color: #fafafa;">
             <children>
-                <ListView id="listView" fx:id="listView" layoutX="25.0" layoutY="66.0" prefHeight="44.0" prefWidth="657.0" />
+                <ListView id="listView" fx:id="listView" layoutX="25.0" layoutY="66.0" prefHeight="255.0" prefWidth="657.0" />
                 <Button fx:id="addNotes" defaultButton="true" layoutX="281.0" layoutY="24.0" mnemonicParsing="false" onAction="#addNewNotes" prefHeight="32.0" prefWidth="189.0" style="-fx-background-color: #1E90FF; -fx-border-radius: 9px;" text="Добавить заметку" textFill="#fff9f9">
                     <font>
                         <Font name="Times New Roman" size="14.0" />
@@ -29,7 +29,7 @@
             </ImageView>
             </children>
         </AnchorPane>
-        <Label layoutX="280.0" layoutY="14.0" text="SimbirSoft" textAlignment="CENTER">
+        <Label layoutX="280.0" layoutY="8.0" text="SimbirSoft" textAlignment="CENTER">
             <font>
                 <Font name="Times New Roman Bold Italic" size="47.0" />
             </font>
