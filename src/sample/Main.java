@@ -4,16 +4,20 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import sample.utils.Pages;
 
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/sample/view/sample.fxml"));
-        primaryStage.setTitle("TestovoeSimbirSoft");
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource(Pages.MAIN_SCENE));
+        primaryStage.setTitle("Testovoe");
         primaryStage.setScene(new Scene(root, 700, 400));
         primaryStage.show();
+
     }
 
 

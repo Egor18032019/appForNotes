@@ -9,12 +9,12 @@ public class Shake {
 
     public Shake(Node node) {
         tt = new TranslateTransition(Duration.millis(77), node);
+        //отступ
+        tt.setFromX(10f);
         //насколько передвиниться
         tt.setByX(10f);
         //кол-во движений
         tt.setCycleCount(3);
-        //отступ
-        tt.setFromX(0f);
         //авто возврат
         tt.setAutoReverse(true);
     }
