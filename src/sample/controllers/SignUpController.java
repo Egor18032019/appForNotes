@@ -12,7 +12,7 @@ import sample.service.User;
 import sample.utils.Pages;
 
 public class SignUpController {
-    private NewScene scene = new NewScene();
+
     @FXML
     private Text exceptionLoginText;
 
@@ -40,8 +40,6 @@ public class SignUpController {
     @FXML
     void initialize() {
         signUpButton.setOnAction(event -> {
-            System.out.println("Зарегистрироваться ");
-
             signUpNewUser();
         });
     }
@@ -50,15 +48,14 @@ public class SignUpController {
         String login = signUpEmail.getText();
         String password1 = signUpPasswordField0.getText();
         String password2 = signUpPasswordField1.getText();
-        System.out.println("loginEmail: " + login + ", password1 : " + password1 + " , password2: " + password2);
-
-        if (password1.equals(password2)) {
-
+        boolean isSimilarPassword = password1.equals(password2);
+        if (isSimilarPassword) {
             DatabaseHandler dbHandler = new DatabaseHandler();
-            boolean haveUser = dbHandler.haveUser(login,password1);
+            boolean haveUser = dbHandler.haveUser(login, password1);
             if (!haveUser) {
-                User user= dbHandler.signUpUser(login,password1);
-                scene.open(Pages.NOTES_SCENE,signUpButton,user);
+                NewScene scene = new NewScene();
+                User user = dbHandler.signUpUser(login, password1);
+                scene.open(Pages.NOTES_SCENE, signUpButton, user);
             } else {
                 String info = "Такой логин уже есть. ";
                 exceptionLoginText.setText(info);
@@ -66,7 +63,6 @@ public class SignUpController {
         } else {
             String info = "Пароли не совпадают.";
             exceptionPasswordText.setText(info);
-            //Todo обработку сделать
-         }
+        }
     }
 }

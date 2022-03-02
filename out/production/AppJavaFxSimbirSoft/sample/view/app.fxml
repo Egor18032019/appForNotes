@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #B0E0E6;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.NotesController">
+<AnchorPane fx:id="notesScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #B0E0E6;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.NotesController">
     <children>
         <AnchorPane fx:id="sceneLogin" layoutY="67.0" prefHeight="329.0" prefWidth="700.0" style="-fx-background-color: #fafafa;">
             <children>
@@ -29,14 +29,19 @@
             </ImageView>
             </children>
         </AnchorPane>
-        <Label layoutX="280.0" layoutY="8.0" text="SimbirSoft" textAlignment="CENTER">
+        <Label layoutX="280.0" layoutY="7.0" text="AppNotes" textAlignment="CENTER">
             <font>
                 <Font name="Times New Roman Bold Italic" size="47.0" />
             </font>
         </Label>
-      <Button fx:id="exitButton" defaultButton="true" layoutX="589.0" layoutY="28.0" mnemonicParsing="false" onAction="#logout" onDragDetected="#red" onMouseClicked="#black" text="Выйти">
+      <Button fx:id="exitButton" defaultButton="true" layoutX="589.0" layoutY="21.0" mnemonicParsing="false" onAction="#logout" text="Выйти">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
+      <Button fx:id="forMainScene" defaultButton="true" layoutX="50.0" layoutY="22.0" mnemonicParsing="false" onAction="#forwardForMainScene" text="На главную">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
     </children>
 </AnchorPane>

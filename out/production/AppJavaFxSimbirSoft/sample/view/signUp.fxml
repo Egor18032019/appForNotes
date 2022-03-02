@@ -41,7 +41,7 @@
             <Text fx:id="exceptionPasswordText" layoutX="273.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="175.99995930989576" />
             </children>
         </AnchorPane>
-        <Label layoutX="265.0" layoutY="14.0" text="SimbirSoft" textAlignment="CENTER">
+        <Label layoutX="265.0" layoutY="8.0" text="AppNotes" textAlignment="CENTER">
             <font>
                 <Font name="Times New Roman Bold Italic" size="47.0" />
             </font>

@@ -35,7 +35,7 @@
             <Text fx:id="erorText" layoutX="269.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="183.33333333333337" />
          </children>
       </AnchorPane>
-      <Label layoutX="253.0" layoutY="14.0" text="SimbirSoft" textAlignment="CENTER">
+      <Label layoutX="264.0" layoutY="7.0" text="AppNotes" textAlignment="CENTER">
          <font>
             <Font name="Times New Roman Bold Italic" size="47.0" />
          </font>

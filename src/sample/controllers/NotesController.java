@@ -13,19 +13,21 @@ import javafx.stage.Stage;
 import sample.entity.DatabaseHandler;
 import sample.model.PersonNotes;
 import sample.service.NewScene;
+import sample.service.User;
 import sample.utils.Pages;
 
 public class NotesController {
-    private NewScene scene = new NewScene();
+
     private Stage stage;
     private ObservableList<PersonNotes> wordsList;
+    private User user;
 
-    public int getUserId() {
-        return userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    private int userId;
-
+    @FXML
+    private Button forMainScene;
 
     @FXML
     private Button addNotes;
@@ -37,21 +39,18 @@ public class NotesController {
     private ListView<PersonNotes> listView;
 
     @FXML
+    private AnchorPane notesScene;
+
+    @FXML
     private AnchorPane sceneLogin;
 
-    @FXML
-    void black(MouseEvent event) {
-        System.out.println("black");
-    }
 
     @FXML
-    void red(MouseEvent event) {
-        System.out.println("red");
+    void forwardForMainScene(ActionEvent event) {
+        NewScene scene = new NewScene();
+        scene.open(Pages.MAIN_SCENE, forMainScene, user);
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public void setWordsList(ObservableList<PersonNotes> wordsList) {
         listView.setItems(wordsList);
@@ -70,35 +69,21 @@ public class NotesController {
             System.out.println("Вы  нажали на кнопку logout");
             stage = (Stage) sceneLogin.getScene().getWindow();
             stage.close();
-            scene.show(Pages.MAIN_SCENE,"Неизвестный пользователь");
+            NewScene scene = new NewScene();
+            scene.show(Pages.AVT_SCENE, "Неизвестный пользователь");
         }
 
     }
 
     @FXML
     void addNewNotes(ActionEvent event) {
-
         stage = (Stage) sceneLogin.getScene().getWindow();
+        NewScene scene = new NewScene();
         scene.show(Pages.NEW_NOTES_SCENE, stage.getTitle());
-        System.out.println("Делаем запрос к бд и обновляем даныне");
-        //Todo или не делать запрос к бд а напрямую получить данные ?? в тз нет ничего про это
         DatabaseHandler dbHandler = new DatabaseHandler();
-        wordsList = dbHandler.getNotes(userId);
+        wordsList = dbHandler.getNotes(user);
         setWordsList(wordsList);
     }
 
-//    @Override
-//    public void initialize(URL location, ResourceBundle resources) {
-//        System.out.println("init");
-//        DatabaseHandler dbHandler = new DatabaseHandler();
-//        System.out.println("dbHandle");
-//        stage = (Stage) sceneLogin.getScene().getWindow();
-//        System.out.println("stage");
-//        String userLogin = stage.getTitle();
-//        System.out.println("title");
-//        ObservableList<PersonNotes> wordsList = dbHandler.getNotes(userLogin);
-//        wordsList.add(new PersonNotes("Albert", "Einstein"));
-//        wordsList.add(new PersonNotes("Ludwig", "Boltzmann"));
-//        listView.setItems(wordsList);
-//    }
+
 }
