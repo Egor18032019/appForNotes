@@ -16,7 +16,8 @@ jdbc:postgresql://localhost:5432/intpostgres
 - Список заметок:
 ![image](https://github.com/Egor18032019/appForNotes/blob/main/src/sample/assets/listNotes.png)
 
-- Добавление новой заметки;
+- Добавление новой заметки:
+
 ![image](https://github.com/Egor18032019/appForNotes/blob/main/src/sample/assets/addNewNotes.png)
 
 - Регистрация:
