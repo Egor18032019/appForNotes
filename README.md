@@ -1,18 +1,19 @@
 "# appForNotes" 
-Приложение для сохранения заметок.
-Главная страница
+* Приложение для сохранения заметок.
+- Главная страница
+![image](https://github.com/Egor18032019/appForNotes/blob/main/src/sample/assets/main.png)
+
+- Авторизиция
+![image](https://github.com/Egor18032019/appForNotes/blob/main/src/sample/assets/avt.png)
+
+- Список заметок
+![image](https://github.com/Egor18032019/appForNotes/blob/main/src/sample/assets/listNotes.png)
+
+- Добавление новой заметки
 ![image](https://github.com/Egor18032019/appForNotes/blob/main/src/sample/assets/addNewNotes.png)
 
-Авторизиция
-
-Спис![image](https://github.com/Egor18032019/appForNotes/blob/main/src/sample/assets/avt.png)
-ок заметок
-
-Добавление новой заметки
-![image](https://github.com/Egor18032019/appForNotes/blob/main/src/sample/assets/addNewNotes.png)
-
-
-Регистрация
+- Регистрация
+![image](https://github.com/Egor18032019/appForNotes/blob/main/src/sample/assets/avt.png)
 
 
 - Создал докер образ postgres БД:
