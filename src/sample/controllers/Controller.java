@@ -13,7 +13,7 @@ import sample.service.User;
 import sample.utils.Pages;
 
 public class Controller {
-    NewScene scene = new NewScene();
+
     @FXML
     private TextField loginField;
     @FXML
@@ -34,7 +34,6 @@ public class Controller {
     @FXML
     void initialize() {
         loginEnterButton.setOnAction(event -> {
-            System.out.println("Вы нажали на кнопку войти");
             String loginText = loginField.getText().trim();
             String loginPassword = passwordField.getText().trim();
             if (!loginText.equals("") && !loginPassword.equals("")) {
@@ -46,16 +45,17 @@ public class Controller {
         });
 
         loginSignUp.setOnAction(event -> {
+            NewScene scene = new NewScene();
             scene.open(Pages.SIGN_SCENE, loginSignUp, "Неизвестный пользователь");
         });
     }
 
     private void loginUser(String loginText, String loginPassword, Button action) {
-        System.out.println("loginText: " + loginText + ", loginPassword : " + loginPassword);
         DatabaseHandler dbHandler = new DatabaseHandler();
         User user = dbHandler.getUser(loginText, loginPassword);
         if (user != null) {
             System.out.println("нашли Success");
+            NewScene scene = new NewScene();
             scene.open(Pages.NOTES_SCENE, action, user);
         } else {
             String info = "Login or Password is wrong !";
