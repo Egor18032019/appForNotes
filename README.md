@@ -1,11 +1,16 @@
 "# appForNotes" 
 Приложение для сохранения заметок.
 Главная страница
+![image](https://github.com/Egor18032019/appForNotes/blob/main/src/sample/assets/addNewNotes.png)
+
 Авторизиция
 
-Список заметок
+Спис![image](https://github.com/Egor18032019/appForNotes/blob/main/src/sample/assets/avt.png)
+ок заметок
 
 Добавление новой заметки
+![image](https://github.com/Egor18032019/appForNotes/blob/main/src/sample/assets/addNewNotes.png)
+
 
 Регистрация
 
